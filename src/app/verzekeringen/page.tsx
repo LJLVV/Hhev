@@ -6,14 +6,37 @@ import {
   useScroll,
   useSpring,
   useTransform,
+  useMotionValue,
 } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import Navigation from "@/components/Navigation";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function VerzekeringenPage() {
   const horizontalRef = useRef<HTMLDivElement>(null);
+  const mobileScrollerRef = useRef<HTMLDivElement>(null);
+  const mobileProgress = useMotionValue(0);
+  const [activeMobileSlide, setActiveMobileSlide] = useState(0);
+
+  const handleMobileScroll = () => {
+    const element = mobileScrollerRef.current;
+    if (!element) return;
+
+    const maxScroll = element.scrollWidth - element.clientWidth;
+    if (maxScroll <= 0) return;
+
+    const progress = Math.max(
+      0,
+      Math.min(1, element.scrollLeft / maxScroll)
+    );
+
+    mobileProgress.set(progress);
+
+    setActiveMobileSlide(
+      Math.max(0, Math.min(3, Math.round(progress * 3)))
+    );
+  };
 
   const { scrollYProgress } = useScroll({
     target: horizontalRef,
@@ -74,6 +97,26 @@ export default function VerzekeringenPage() {
     [0.9, 1]
   );
 
+  const mobileLineWidth = useTransform(
+    mobileProgress, [0, 1], ["0%", "100%"]
+  );
+
+  const mobileSlideTwoLine = useTransform(
+    mobileProgress, [0.22, 0.48], ["8%", "92%"]
+  );
+
+  const mobileSlideTwoDot = useTransform(
+    mobileProgress, [0.22, 0.48], ["8%", "92%"]
+  );
+
+  const mobileSlideThreeRotate = useTransform(
+    mobileProgress, [0.45, 0.75], [-8, 3]
+  );
+
+  const mobileSlideFourScale = useTransform(
+    mobileProgress, [0.72, 1], [0.9, 1]
+  );
+
   return (
     <main className="bg-[#fbfaf7] text-[#10245e]">
 
@@ -88,19 +131,23 @@ export default function VerzekeringenPage() {
       ========================================================= */}
       <div
         ref={horizontalRef}
-        className="relative h-[400vh]"
+        className="relative h-[100svh] lg:h-[400vh]"
       >
-        <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="relative h-[100svh] overflow-hidden lg:sticky lg:top-0 lg:h-screen">
 
+          <div
+            ref={mobileScrollerRef}
+            onScroll={handleMobileScroll}
+            className="h-full w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-hidden lg:snap-none">
           <motion.div
             style={{ x }}
-            className="flex h-full w-[400vw]"
+            className="flex h-full w-[400vw] max-lg:!transform-none"
           >
 
             {/* =====================================================
                 SLIDE 01 — MEDIA
             ===================================================== */}
-            <section className="relative h-screen w-screen shrink-0 overflow-hidden bg-[#07132f] text-white">
+            <section className="relative h-[100svh] lg:h-screen w-screen shrink-0 overflow-hidden bg-[#07132f] text-white snap-start snap-always">
 
               <motion.video
                 style={{
@@ -242,7 +289,7 @@ export default function VerzekeringenPage() {
             {/* =====================================================
                 SLIDE 02 — RISICO
             ===================================================== */}
-            <section className="relative flex h-screen w-screen shrink-0 items-center overflow-hidden bg-[#f5f2ec]">
+            <section className="relative flex h-[100svh] lg:h-screen w-screen shrink-0 items-center overflow-hidden bg-[#f5f2ec] snap-start snap-always">
 
               <div className="mx-auto w-full max-w-[1500px] px-8 lg:px-14">
 
@@ -309,7 +356,7 @@ export default function VerzekeringenPage() {
             {/* =====================================================
                 SLIDE 03 — SITUATIE
             ===================================================== */}
-            <section className="relative flex h-screen w-screen shrink-0 items-center overflow-hidden bg-white">
+            <section className="relative flex h-[100svh] lg:h-screen w-screen shrink-0 items-center overflow-hidden bg-white snap-start snap-always">
 
               {/* groot typografisch watermerk */}
               <motion.div
@@ -425,7 +472,7 @@ export default function VerzekeringenPage() {
             {/* =====================================================
                 SLIDE 04 — OVERZICHT / CONTACT
             ===================================================== */}
-            <section className="relative flex h-screen w-screen shrink-0 items-center overflow-hidden bg-[#10245e] text-white">
+            <section className="relative flex h-[100svh] lg:h-screen w-screen shrink-0 items-center overflow-hidden bg-[#10245e] text-white snap-start snap-always">
 
               <motion.div
                 style={{ scale: slideFourScale }}
@@ -489,12 +536,25 @@ export default function VerzekeringenPage() {
             </section>
 
           </motion.div>
+          </div>
 
+
+          {/* MOBIELE SWIPEVOORTGANG */}
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-40 h-[3px] bg-white/15 lg:hidden">
+            <motion.div
+              style={{ width: mobileLineWidth }}
+              className="h-full bg-[#b85c38]"
+            />
+          </div>
+
+          <div className="pointer-events-none absolute bottom-5 right-6 z-40 text-[10px] font-medium tracking-[0.18em] text-[#d58a68] lg:hidden">
+            {String(activeMobileSlide + 1).padStart(2, "0")} / 04
+          </div>
 
           {/* =========================================================
               PROGRESS — VAST ONDERAAN
           ========================================================= */}
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-40 h-[3px] bg-black/5">
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-40 hidden h-[3px] bg-black/5 lg:block">
             <motion.div
               style={{ width: lineWidth }}
               className="h-full origin-left bg-[#b85c38]"

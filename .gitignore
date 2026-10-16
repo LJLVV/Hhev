@@ -44,3 +44,11 @@ next-env.d.ts
 *.before-*.txt
 *.backup.tsx
 *.timeline-*
+
+# Local backup files
+*.bak
+*.bak-*
+*.backup
+*.backup-*
+*.before-*
+*~
