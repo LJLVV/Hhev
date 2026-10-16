@@ -25,7 +25,7 @@ const topics = [
     title: "Verduurzamen",
     subtitle: "Een woning die vooruit kan.",
     color: "#E8EBE3",
-    position: "left-[12%] bottom-[12%]",
+    position: "left-1/2 -translate-x-1/2 bottom-[4%]",
   },
   {
     id: "documenten",
@@ -39,9 +39,13 @@ const topics = [
     title: "Vergelijkingskaarten",
     subtitle: "Inzicht in uw mogelijkheden.",
     color: "#DCE4EF",
-    position: "left-1/2 -translate-x-1/2 -bottom-[85px]",
+    position: "left-1/2 -translate-x-1/2 -bottom-[85px] translate-y-[180px]",
   },
 ] as const;
+
+const visibleTopics = topics.filter(
+  (topic) => topic.id !== "documenten" && topic.id !== "kaarten"
+);
 
 type TopicId = (typeof topics)[number]["id"];
 
@@ -104,7 +108,15 @@ export default function ToolsExperience() {
             </span>
           </motion.div>
 
-          {topics.map((topic, index) => (
+          {visibleTopics.map((topic, index) => (
+            <div
+              key={topic.id}
+              className={
+                topic.id === "duurzaam"
+                  ? "absolute left-1/2 top-[580px] -translate-x-1/2"
+                  : `absolute ${topic.position}`
+              }
+            >
             <motion.button
               key={topic.id}
               type="button"
@@ -115,10 +127,10 @@ export default function ToolsExperience() {
               transition={{ duration: 0.85, delay: index * 0.12, ease }}
               whileHover={{ scale: 1.08, y: -8 }}
               style={{ backgroundColor: topic.color }}
-              className={`group absolute flex h-[185px] w-[185px] flex-col items-center justify-center rounded-full p-5 text-center shadow-[0_20px_50px_rgba(16,36,94,0.08)] transition-shadow duration-500 hover:shadow-[0_30px_70px_rgba(16,36,94,0.16)] ${topic.position}`}
+              className={`group relative flex h-[185px] w-[185px] flex-col items-center justify-center rounded-full p-5 text-center shadow-[0_20px_50px_rgba(16,36,94,0.08)] transition-shadow duration-500 hover:shadow-[0_30px_70px_rgba(16,36,94,0.16)] ${topic.position}`}
             >
-              <span className={`font-medium leading-tight tracking-[-0.04em] ${topic.id === "kaarten" ? "text-[17px]" : "text-[19px]"}`}>
-                {topic.id === "kaarten" ? (
+              <span className={`font-medium leading-tight tracking-[-0.04em] ${(topic.id as string) === "kaarten" ? "text-[17px]" : "text-[19px]"}`}>
+                {(topic.id as string) === "kaarten" ? (
                   <>
                     Vergelijkings-
                     <br />
@@ -135,12 +147,13 @@ export default function ToolsExperience() {
                 ↗
               </span>
             </motion.button>
+            </div>
           ))}
         </div>
 
         {/* Mobiel: ruimtelijke, verspringende onderwerpen */}
         <div className="grid grid-cols-2 gap-4 lg:hidden">
-          {topics.map((topic, index) => (
+          {visibleTopics.map((topic, index) => (
             <motion.button
               key={topic.id}
               type="button"
@@ -151,11 +164,11 @@ export default function ToolsExperience() {
               transition={{ delay: index * 0.08, duration: 0.65 }}
               style={{ backgroundColor: topic.color }}
               className={`flex aspect-square flex-col items-center justify-center rounded-full p-4 text-center ${
-                index === 4 ? "col-span-2 mx-auto w-[55%]" : ""
+                index === 2 ? "col-span-2 mx-auto w-[55%]" : ""
               }`}
             >
               <span className="text-[clamp(13px,3.7vw,19px)] font-medium leading-tight tracking-[-0.04em]">
-                {topic.id === "kaarten" ? (
+                {(topic.id as string) === "kaarten" ? (
                   <>
                     Vergelijkings-
                     <br />
@@ -247,17 +260,17 @@ export default function ToolsExperience() {
                   href="https://funnel.uitvaart.asr.nl/heckmann-hypotheken-en-verzekeringen-249670/inventarisatietool"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-6 rounded-[30px] bg-[#f5e5d8] p-8"
+                  className="group flex min-h-[220px] flex-col justify-between rounded-[28px] bg-[#f5e5d8] p-7 transition-transform duration-500 hover:-translate-y-2"
                 >
-                  <span>
-                    <strong className="block text-[25px] tracking-[-0.04em]">
-                      Uw uitvaartwensen inventariseren
-                    </strong>
-                    <span className="mt-3 block text-[15px] leading-7 text-[#10245e]/60">
-                      Maak via a.s.r. een indicatie van uw wensen en de bijbehorende kosten.
-                    </span>
+                  <span className="block text-[21px] font-normal leading-[1.2] tracking-[-0.04em]">
+                    Uw uitvaartwensen inventariseren
                   </span>
-                  <span className="text-[30px]">↗</span>
+                  <span className="mt-5 block text-[16px] leading-6 text-[#10245e]/70">
+                    Maak via a.s.r. een indicatie van uw wensen en de bijbehorende kosten.
+                  </span>
+                  <span className="mt-4 self-end text-[25px] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                    ↗
+                  </span>
                 </a>
               )}
 
@@ -266,17 +279,19 @@ export default function ToolsExperience() {
                   href="https://www.verbeterjehuis.nl/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-6 rounded-[30px] bg-[#e8ebe3] p-8"
+                  className="group flex min-h-[220px] flex-col justify-between rounded-[28px] bg-[#e8ebe3] p-7 transition-transform duration-500 hover:-translate-y-2"
                 >
-                  <span>
-                    <strong className="block text-[25px] tracking-[-0.04em]">
-                      Ontdek Verbeterjehuis
-                    </strong>
-                    <span className="mt-3 block text-[15px] leading-7 text-[#10245e]/60">
-                      Bekijk welke verduurzamingsmaatregelen bij uw woning passen.
-                    </span>
+                  <span className="block text-[21px] font-normal leading-[1.2] tracking-[-0.04em]">
+                    Ontdek Verbeterjehuis
                   </span>
-                  <span className="text-[30px]">↗</span>
+                  <span className="mt-5 block text-[16px] leading-6 text-[#10245e]/70">
+                    Bekijk welke verduurzamings-
+                    <br />
+                    maatregelen bij uw woning passen.
+                  </span>
+                  <span className="mt-4 self-end text-[25px] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                    ↗
+                  </span>
                 </a>
               )}
 

@@ -42,13 +42,15 @@ function JourneyStep({
 
   const opacity = useTransform(
     progress,
-    [
-      Math.max(0, center - 0.19),
-      center - 0.07,
-      center + 0.07,
-      Math.min(1, center + 0.19),
-    ],
-    [0, 1, 1, 0]
+    index === 0
+      ? [0, 0.01, center + 0.07, Math.min(1, center + 0.19)]
+      : [
+          Math.max(0, center - 0.19),
+          center - 0.07,
+          center + 0.07,
+          Math.min(1, center + 0.19),
+        ],
+    [index === 0 ? 1 : 0, 1, 1, 0]
   );
 
   const y = useTransform(

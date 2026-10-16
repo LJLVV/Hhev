@@ -116,6 +116,24 @@ export default function Navigation({
     setMenuOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [menuOpen]);
+
   const foreground = darkBackground ? "#ffffff" : "#10245e";
 
   return (
@@ -134,11 +152,11 @@ export default function Navigation({
         }}
         className={`${persistent ? "fixed" : "absolute"} inset-x-0 top-0 z-[100] ${
           !persistent
-            ? "bg-[#f8f6f1]/25 backdrop-blur-[5px]"
+            ? "lg:bg-[#f8f6f1]/25 lg:backdrop-blur-[5px]"
             : ""
         } ${className}`}
       >
-        <div className="mx-auto flex h-[86px] w-full max-w-[2000px] items-center px-7 lg:px-[3.4vw]">
+        <div className="mx-auto flex h-[72px] w-full max-w-[2000px] lg:h-[86px] items-center px-7 lg:px-[3.4vw]">
           <nav className="hidden w-full items-center justify-between lg:flex">
 
             {/* HOME */}
@@ -146,7 +164,7 @@ export default function Navigation({
               href="/"
               aria-label="Naar homepage"
               className="group flex shrink-0 items-center gap-3 transition-colors duration-700" 
-              style={{ color: persistent ? foreground : "#10245e" }}
+              style={{ color: foreground }}
             >
               <div className="relative flex h-[38px] w-[38px] items-center justify-center">
                 <span className="absolute inset-0 border border-current opacity-30 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-45 group-hover:border-[#b85c38]" />
@@ -169,7 +187,7 @@ export default function Navigation({
                   key={item.href}
                   href={item.href}
                   className="group relative flex shrink-0 items-center gap-3 py-2 text-[13px] font-medium tracking-[-0.015em] transition-colors duration-700"
-                    style={{ color: persistent ? foreground : "#10245e" }}
+                    style={{ color: foreground }}
                 >
                   <span
                     className={
@@ -205,9 +223,10 @@ export default function Navigation({
             <Link
               href="/"
               aria-label="Naar homepage"
-              className="flex items-center gap-3 text-[#10245e]"
+              className="flex items-center gap-3 transition-colors duration-500"
+              style={{ color: foreground }}
             >
-              <div className="flex h-8 w-8 items-center justify-center border border-[#10245e]/25">
+              <div className="flex h-8 w-8 items-center justify-center border border-current/25">
                 <span className="text-[13px] font-semibold">
                   H
                 </span>
@@ -221,9 +240,30 @@ export default function Navigation({
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#10245e]"
+              aria-label="Navigatiemenu openen"
+              aria-expanded={menuOpen}
+              aria-controls="heckmann-mobile-menu"
+              className="group flex h-[46px] items-center gap-5 px-5 backdrop-blur-[8px]"
+              style={{
+                color: foreground,
+                border: `1px solid ${
+                  darkBackground
+                    ? "rgba(255,255,255,.38)"
+                    : "rgba(16,36,94,.24)"
+                }`,
+                background: darkBackground
+                  ? "rgba(16,36,94,.14)"
+                  : "rgba(248,245,239,.35)",
+              }}
             >
-              Menu
+              <span className="text-[10px] font-semibold uppercase tracking-[0.18em]">
+                Menu
+              </span>
+
+              <span className="relative h-3.5 w-4" aria-hidden="true">
+                <span className="absolute left-0 top-[3px] h-px w-4 bg-current" />
+                <span className="absolute bottom-[3px] left-0 h-px w-4 bg-current" />
+              </span>
             </button>
           </div>
         </div>
@@ -284,7 +324,7 @@ export default function Navigation({
               <button
                 type="button"
                 onClick={() => setMenuOpen((open) => !open)}
-                className="group flex h-11 items-center gap-4 px-4 backdrop-blur-[8px]"
+                className="group flex h-[46px] items-center gap-5 px-5 backdrop-blur-[8px]"
                 style={{
                   color: foreground,
                   border: `1px solid ${
@@ -364,7 +404,11 @@ export default function Navigation({
                 duration: 0.5,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="fixed right-5 top-[78px] z-[120] w-[calc(100%-2.5rem)] max-w-[440px] overflow-hidden bg-[#10245e] text-white shadow-[0_30px_90px_rgba(16,36,94,.2)] lg:right-8 lg:top-[88px]"
+              id="heckmann-mobile-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigatiemenu"
+              className="fixed inset-x-3 top-[76px] z-[120] max-h-[calc(100dvh-88px)] overflow-y-auto overscroll-contain bg-[#10245e] text-white shadow-[0_30px_90px_rgba(16,36,94,.2)] sm:inset-x-auto sm:right-5 sm:w-[440px] lg:right-8 lg:top-[88px]"
             >
               <div className="px-7 pb-7 pt-8 lg:px-9 lg:pb-9">
                 <p className="mb-7 text-[9px] uppercase tracking-[0.3em] text-white/45">

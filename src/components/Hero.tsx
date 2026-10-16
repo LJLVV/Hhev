@@ -79,6 +79,9 @@ export default function Hero() {
       {/* Alleen een extreem subtiele warme tint */}
       <div className="pointer-events-none absolute inset-0 bg-[#f5c98c]/[0.035]" />
 
+      {/* Mobiele contrastlaag voor de quote */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 top-[38%] bg-gradient-to-b from-transparent via-[#071333]/15 to-[#071333]/60 lg:hidden" />
+
       {/* HEADER */}
       <Navigation />
 
@@ -107,7 +110,7 @@ export default function Hero() {
             delay: 0.25,
             ease,
           }}
-          className="absolute left-7 top-[29%] w-[min(440px,39vw)] lg:left-12"
+          className="absolute left-4 top-[11%] w-[min(145px,35vw)] lg:left-12 lg:top-[29%] lg:w-[min(440px,39vw)]"
         >
           <Image
             src="/heckmann-logo-transparent.png"
@@ -136,10 +139,10 @@ export default function Hero() {
             delay: 1.05,
             ease,
           }}
-          className="absolute right-7 top-[43%] w-[min(450px,31vw)] lg:right-12"
+          className="absolute inset-x-7 bottom-[15%] lg:inset-x-auto lg:bottom-auto lg:right-12 lg:top-[43%] lg:w-[min(450px,31vw)]"
         >
           <p
-            className="text-[clamp(1.8rem,2.7vw,3rem)] leading-[1.08] tracking-[-0.035em] text-[#10245e]"
+            className="max-w-[520px] text-[clamp(2rem,8vw,2.8rem)] leading-[1.12] tracking-[-0.035em] text-[#fffaf2] [text-shadow:0_2px_16px_rgba(0,0,0,0.35)] lg:max-w-none lg:text-[clamp(1.8rem,2.7vw,3rem)] lg:leading-[1.08] lg:text-[#10245e] lg:[text-shadow:none]"
             style={{
               fontFamily: 'Georgia, "Times New Roman", serif',
               fontWeight: 400,
@@ -155,7 +158,7 @@ export default function Hero() {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="ml-[3px] inline-block h-[0.9em] w-px translate-y-[0.06em] bg-[#10245e]"
+                className="ml-[3px] inline-block h-[0.9em] w-px translate-y-[0.06em] bg-[#fffaf2] lg:bg-[#10245e]"
               />
             )}
           </p>

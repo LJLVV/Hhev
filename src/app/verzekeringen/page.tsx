@@ -322,7 +322,7 @@ export default function VerzekeringenPage() {
 
               <div className="relative z-10 mx-auto w-full max-w-[1500px] px-8 lg:px-14">
 
-                <div className="grid gap-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+                <div className="grid gap-10 lg:gap-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
 
                   <div>
 
@@ -330,7 +330,7 @@ export default function VerzekeringenPage() {
                       Prijs & kwaliteit
                     </p>
 
-                    <h2 className="text-[clamp(4rem,6.8vw,8rem)] leading-[0.88] tracking-[-0.065em]">
+                    <h2 className="text-[clamp(2.65rem,10vw,3.8rem)] leading-[1.02] tracking-[-0.06em] lg:text-[clamp(4rem,6.8vw,8rem)] lg:leading-[0.88] lg:tracking-[-0.065em]">
                       Niet alleen
                       <br />
                       de premie telt.
@@ -340,7 +340,7 @@ export default function VerzekeringenPage() {
                       </span>
                     </h2>
 
-                    <p className="mt-10 max-w-[500px] text-[17px] leading-8 text-[#10245e]/55">
+                    <p className="mt-6 max-w-[500px] text-[16px] leading-7 text-[#10245e]/65 lg:mt-10 lg:text-[17px] lg:leading-8 lg:text-[#10245e]/55">
                       Een lage premie is prettig, maar alleen als de verzekering
                       ook past wanneer u haar nodig heeft. Daarom kijken we
                       naar de verhouding tussen prijs, dekking en voorwaarden.
@@ -350,13 +350,13 @@ export default function VerzekeringenPage() {
 
 
                   {/* LOSSE WOORDEN — GEEN CARDS */}
-                  <div className="relative h-[430px]">
+                  <div className="relative h-[235px] w-full lg:h-[430px]">
 
                     <motion.span
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ duration: 0.8 }}
-                      className="absolute left-[8%] top-[5%] text-[clamp(2rem,3.6vw,4.6rem)] tracking-[-0.055em]"
+                      className="absolute left-[2%] top-[8%] text-[clamp(1.65rem,7vw,2.4rem)] tracking-[-0.055em] lg:left-[8%] lg:top-[5%] lg:text-[clamp(2rem,3.6vw,4.6rem)]"
                     >
                       wensen
                     </motion.span>
@@ -369,7 +369,7 @@ export default function VerzekeringenPage() {
                         delay: 0.12,
                         ease,
                       }}
-                      className="absolute right-[4%] top-[26%] text-[clamp(2.4rem,4.7vw,5.7rem)] tracking-[-0.06em] text-[#b85c38]"
+                      className="absolute right-[2%] top-[8%] text-[clamp(1.8rem,7.5vw,2.6rem)] tracking-[-0.06em] text-[#b85c38] lg:right-[4%] lg:top-[26%] lg:text-[clamp(2.4rem,4.7vw,5.7rem)]"
                     >
                       risico
                     </motion.span>
@@ -382,7 +382,7 @@ export default function VerzekeringenPage() {
                         delay: 0.2,
                         ease,
                       }}
-                      className="absolute bottom-[25%] left-[0%] text-[clamp(2rem,4vw,4.8rem)] tracking-[-0.055em] text-[#10245e]/55"
+                      className="absolute bottom-[12%] left-[2%] text-[clamp(1.65rem,7vw,2.4rem)] tracking-[-0.055em] text-[#10245e]/55 lg:bottom-[25%] lg:left-[0%] lg:text-[clamp(2rem,4vw,4.8rem)]"
                     >
                       budget
                     </motion.span>
@@ -395,7 +395,7 @@ export default function VerzekeringenPage() {
                         delay: 0.3,
                         ease,
                       }}
-                      className="absolute bottom-[3%] right-[10%] text-[clamp(2.5rem,5vw,6rem)] tracking-[-0.065em]"
+                      className="absolute bottom-[12%] right-[2%] text-[clamp(1.8rem,7.5vw,2.6rem)] tracking-[-0.065em] lg:bottom-[3%] lg:right-[10%] lg:text-[clamp(2.5rem,5vw,6rem)]"
                     >
                       zekerheid
                     </motion.span>
@@ -410,7 +410,7 @@ export default function VerzekeringenPage() {
                         delay: 0.15,
                         ease,
                       }}
-                      className="absolute left-[47%] top-[2%] h-[92%] w-px origin-top rotate-[24deg] bg-[#10245e]/10"
+                      className="absolute left-[58%] top-[2%] h-[92%] w-px origin-top rotate-[12deg] bg-[#10245e]/10 lg:left-[47%] lg:rotate-[24deg]"
                     />
 
                   </div>
@@ -438,14 +438,14 @@ export default function VerzekeringenPage() {
               />
 
 
-              <div className="relative z-10 mx-auto w-full max-w-[1500px] px-8 lg:px-14">
+              <div className="relative z-10 mx-auto w-full min-w-0 max-w-[1500px] px-6 sm:px-8 lg:px-14">
 
                 <p className="mb-8 text-[10px] uppercase tracking-[0.34em] text-white/45">
                   Goed geregeld
                 </p>
 
-                <h2 className="max-w-[1100px] text-[clamp(4.2rem,7.4vw,8.8rem)] leading-[0.86] tracking-[-0.07em]">
-                  Eén aanspreekpunt.
+                <h2 className="max-w-[1100px] text-[clamp(2.7rem,10vw,4rem)] leading-[0.98] tracking-[-0.065em] lg:text-[clamp(4.2rem,7.4vw,8.8rem)] lg:leading-[0.86]">
+                  Eén <span className="lg:hidden"><br /></span>aanspreekpunt.
                   <br />
                   <span className="text-[#d58a68]">
                     Een helder overzicht.

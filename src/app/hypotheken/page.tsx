@@ -93,7 +93,7 @@ export default function HypothekenPage() {
         {/* video */}
         <motion.div
           style={{ scale: videoScale }}
-          className="absolute inset-y-0 right-0 w-[63%]"
+          className="absolute inset-0 w-full lg:inset-y-0 lg:right-0 lg:left-auto lg:w-[63%]"
         >
           <video
             ref={videoRef}
@@ -102,7 +102,7 @@ export default function HypothekenPage() {
             loop
             playsInline
             preload="auto"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-center"
           >
             <source
               src="/hypotheken-hero.mp4"
@@ -115,11 +115,17 @@ export default function HypothekenPage() {
 
         {/* zachte fade */}
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 hidden lg:block"
           style={{
             background:
               "linear-gradient(90deg,#f5f2ec 0%,#f5f2ec 34%,rgba(245,242,236,.96) 40%,rgba(245,242,236,.72) 46%,rgba(245,242,236,.18) 57%,rgba(245,242,236,0) 68%)",
           }}
+        />
+
+        {/* Mobiele overlay: video beeldvullend, tekst leesbaar */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071329]/85 via-[#071329]/35 to-[#071329]/20 lg:hidden"
         />
 
         {/* HERO COPY */}
@@ -128,10 +134,10 @@ export default function HypothekenPage() {
             y: heroTextY,
             opacity: heroOpacity,
           }}
-          className="relative z-20 mx-auto flex min-h-[100svh] max-w-[1600px] items-center px-8 pt-10"
+          className="relative z-20 mx-auto flex min-h-[100svh] max-w-[1600px] items-end px-6 pb-[18svh] pt-28 lg:items-center lg:px-8 lg:pb-0 lg:pt-10"
         >
           <h1
-            className="max-w-[830px] text-[clamp(4.5rem,7.3vw,8rem)] font-normal leading-[0.86] tracking-[-0.07em] text-[#10245e]"
+            className="max-w-[830px] text-[clamp(2.9rem,11vw,4.6rem)] font-normal leading-[0.99] tracking-[-0.055em] text-white lg:text-[clamp(4.5rem,7.3vw,8rem)] lg:leading-[0.86] lg:tracking-[-0.07em] lg:text-[#10245e]"
             style={{
               fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
             }}
@@ -178,12 +184,8 @@ export default function HypothekenPage() {
                 className="block"
               >
                 <motion.span
-                  initial={{ color: "#10245e" }}
-                  animate={{ color: "#b85c38" }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 1.45,
-                  }}
+                  className="text-[#b85c38]"
+                  initial={false}
                 >
                   hierna
                 </motion.span>{" "}
@@ -200,7 +202,7 @@ export default function HypothekenPage() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-8 left-8 z-30 text-[18px] text-[#10245e]/45"
+          className="absolute bottom-8 left-6 z-30 text-[18px] text-white/75 lg:left-8 lg:text-[#10245e]/45"
         >
           ↓
         </motion.div>
@@ -210,11 +212,11 @@ export default function HypothekenPage() {
         {/* =========================================================
             KENNISMAKEN + VERANTWOORD — ÉÉN VERHAAL
         ========================================================= */}
-        <section className="relative overflow-hidden bg-white px-8 py-24 lg:py-32">
+        <section className="relative overflow-hidden bg-white px-6 py-16 lg:px-8 lg:py-32">
           <div className="relative mx-auto max-w-[1500px]">
 
             {/* BOVENSTE VERHAAL */}
-            <div className="grid gap-12 lg:grid-cols-[1.12fr_.88fr]">
+            <div className="grid gap-6 lg:grid-cols-[1.12fr_.88fr] lg:gap-12">
 
               <motion.div
                 initial={{ opacity: 0, y: 45 }}
@@ -222,11 +224,11 @@ export default function HypothekenPage() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.85, ease }}
               >
-                <p className="mb-7 text-[10px] uppercase tracking-[0.3em] text-[#10245e]/40">
+                <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#10245e]/40 lg:mb-7">
                   Kennismaken
                 </p>
 
-                <h2 className="max-w-[790px] text-[clamp(3.6rem,5.6vw,6.4rem)] font-normal leading-[0.91] tracking-[-0.06em] text-[#10245e]">
+                <h2 className="max-w-[790px] text-[clamp(2.65rem,10vw,3.6rem)] font-normal leading-[1.02] tracking-[-0.06em] text-[#10245e] lg:text-[clamp(3.6rem,5.6vw,6.4rem)] lg:leading-[0.91]">
 
                   <span className="block overflow-hidden">
                     <motion.span
@@ -272,9 +274,9 @@ export default function HypothekenPage() {
                   delay: 0.15,
                   ease,
                 }}
-                className="max-w-[470px] pt-10 lg:justify-self-end"
+                className="max-w-[470px] pt-0 lg:justify-self-end lg:pt-10"
               >
-                <p className="text-[17px] leading-8 text-[#10245e]/60">
+                <p className="text-[16px] leading-7 text-[#10245e]/60 lg:text-[17px] lg:leading-8">
                   Het eerste hypotheekgesprek is gratis. We bekijken rustig
                   uw situatie en mogelijkheden, zonder dat u ergens aan vastzit.
                 </p>
@@ -303,7 +305,7 @@ export default function HypothekenPage() {
 
 
             {/* VERBINDING */}
-            <div className="relative my-10 h-[150px] lg:my-14 lg:h-[180px]">
+            <div className="hidden lg:block lg:my-14 lg:h-[180px] relative   lg: lg:">
 
               {/* subtiele achtergrondwoorden */}
               <motion.div
@@ -311,7 +313,7 @@ export default function HypothekenPage() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
-                className="pointer-events-none absolute inset-0 flex items-center justify-center"
+                className="pointer-events-none absolute inset-0 hidden items-center justify-center lg:flex"
               >
                 <span className="whitespace-nowrap text-[clamp(3rem,7vw,7rem)] tracking-[-0.07em] text-[#10245e]/[0.025]">
                   luisteren · begrijpen · adviseren
@@ -323,7 +325,7 @@ export default function HypothekenPage() {
               <svg
                 viewBox="0 0 1400 180"
                 preserveAspectRatio="none"
-                className="absolute inset-0 h-full w-full overflow-visible"
+                className="absolute inset-0 hidden h-full w-full overflow-visible lg:block"
               >
                 <motion.path
                   d="M 35 48 C 310 48, 345 132, 690 92 C 995 56, 1110 115, 1360 115"
@@ -359,7 +361,7 @@ export default function HypothekenPage() {
                   delay: 0.1,
                   ease,
                 }}
-                className="absolute left-[1.8%] top-[22%] h-3 w-3 rounded-full bg-[#b85c38]"
+                className="absolute left-[1.8%] top-[22%] hidden h-3 w-3 rounded-full bg-[#b85c38] lg:block"
               />
 
 
@@ -373,7 +375,7 @@ export default function HypothekenPage() {
                   delay: 0.75,
                   ease,
                 }}
-                className="absolute left-[48%] top-[38%] -translate-x-1/2 bg-white px-5 py-2"
+                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white py-2 lg:left-[48%] lg:top-[38%] lg:-translate-x-1/2 lg:translate-y-0 lg:px-5"
               >
                 <span className="whitespace-nowrap text-[10px] uppercase tracking-[0.3em] text-[#10245e]/45">
                   Een hypotheek die klopt
@@ -394,7 +396,7 @@ export default function HypothekenPage() {
                   delay: 1.55,
                   ease,
                 }}
-                className="absolute right-[1.5%] top-[58%] flex h-11 w-11 items-center justify-center rounded-full bg-[#b85c38] text-[21px] text-white"
+                className="absolute right-[1.5%] top-[58%] hidden h-11 w-11 items-center justify-center rounded-full bg-[#b85c38] text-[21px] text-white lg:flex"
               >
                 →
               </motion.div>
@@ -403,7 +405,7 @@ export default function HypothekenPage() {
 
 
             {/* ONDERSTE VERHAAL — TEKST LINKS / STATEMENT RECHTS */}
-            <div className="grid gap-16 lg:grid-cols-[.62fr_1.38fr] lg:items-end lg:gap-24">
+            <div className="grid gap-9 lg:grid-cols-[.62fr_1.38fr] lg:items-end lg:gap-24">
 
               {/* BIJTEKST LINKS */}
               <motion.div
@@ -425,7 +427,7 @@ export default function HypothekenPage() {
                     delay: 0.12,
                     ease,
                   }}
-                  className="mb-6 text-[10px] uppercase tracking-[0.3em] text-[#10245e]/40"
+                  className="mb-6 text-[10px] uppercase tracking-[0.3em] text-[#b85c38] lg:text-[#10245e]/40"
                 >
                   Persoonlijk advies
                 </motion.p>
@@ -439,7 +441,7 @@ export default function HypothekenPage() {
                     delay: 0.2,
                     ease,
                   }}
-                  className="text-[17px] leading-8 text-[#10245e]/58"
+                  className="text-[16px] leading-7 text-[#10245e]/58 lg:text-[17px] lg:leading-8"
                 >
                   We kijken naar uw maandlasten, toekomstplannen en financiële
                   ruimte. Niet alleen naar het maximale bedrag dat een
@@ -455,7 +457,7 @@ export default function HypothekenPage() {
                     delay: 0.45,
                     ease,
                   }}
-                  className="mt-9 h-px bg-[#b85c38]"
+                  className="mt-6 h-px bg-[#b85c38] lg:mt-9"
                 />
               </motion.div>
 
@@ -471,7 +473,7 @@ export default function HypothekenPage() {
                 }}
                 className="lg:justify-self-end"
               >
-                <h2 className="max-w-[930px] text-[clamp(3.5rem,5.7vw,6.7rem)] font-normal leading-[0.89] tracking-[-0.065em] text-[#10245e]">
+                <h2 className="max-w-[930px] text-[clamp(2.55rem,9vw,3.5rem)] font-normal leading-[1.04] tracking-[-0.06em] text-[#10245e] lg:text-[clamp(3.5rem,5.7vw,6.7rem)] lg:leading-[0.89] lg:tracking-[-0.065em]">
 
                   <motion.span
                     initial={{ opacity: 0, x: 65 }}
@@ -730,7 +732,7 @@ export default function HypothekenPage() {
           </motion.div>
 
           {/* ORGANISCHE BEELDEN */}
-          <div className="relative min-h-[700px] w-full lg:min-h-[760px]">
+          <div className="relative flex w-full flex-col items-center gap-7 py-4 lg:block lg:min-h-[760px] lg:py-0">
 
             {/* subtiele gloed in het midden */}
             <motion.div
@@ -738,7 +740,7 @@ export default function HypothekenPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease }}
-              className="pointer-events-none absolute left-[50%] top-[50%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#b85c38]/10 blur-[70px]"
+              className="pointer-events-none hidden lg:block absolute left-[50%] top-[50%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#b85c38]/10 blur-[70px]"
             />
 
 
@@ -748,7 +750,7 @@ export default function HypothekenPage() {
               whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-70px" }}
               transition={{ duration: 0.9, delay: 0.05, ease }}
-              className="group absolute left-[5%] top-[5%] h-[325px] w-[325px] overflow-hidden shadow-[0_25px_70px_rgba(16,36,94,0.08)]"
+              className="group relative aspect-square w-full max-w-[325px] shrink-0 lg:absolute lg:left-[5%] lg:top-[5%] lg:h-[325px] lg:w-[325px] lg:max-w-none overflow-hidden shadow-[0_25px_70px_rgba(16,36,94,0.08)]"
               style={{
                 borderRadius: "50%",
               }}
@@ -761,7 +763,7 @@ export default function HypothekenPage() {
 
               <div className="absolute inset-0 bg-gradient-to-tr from-black/65 via-black/18 to-transparent transition-opacity duration-700 group-hover:opacity-90" />
 
-              <div className="absolute bottom-10 left-0 right-0 z-10 px-8 text-center text-white transition-transform duration-700 ease-out group-hover:-translate-y-1">
+              <div className="absolute bottom-12 left-0 right-0 z-10 px-6 text-center text-white lg:bottom-10 lg:px-8 transition-transform duration-700 ease-out group-hover:-translate-y-1">
                 <h3 className="text-[30px] font-normal tracking-[-0.035em]">
                   Rente
                 </h3>
@@ -778,7 +780,7 @@ export default function HypothekenPage() {
               whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-70px" }}
               transition={{ duration: 0.9, delay: 0.14, ease }}
-              className="group absolute right-[3%] top-[0%] h-[325px] w-[325px] overflow-hidden shadow-[0_25px_70px_rgba(16,36,94,0.08)]"
+              className="group relative aspect-square w-full max-w-[325px] shrink-0 lg:absolute lg:right-[3%] lg:top-[0%] lg:h-[325px] lg:w-[325px] lg:max-w-none overflow-hidden shadow-[0_25px_70px_rgba(16,36,94,0.08)]"
               style={{
                 borderRadius: "50%",
               }}
@@ -791,7 +793,7 @@ export default function HypothekenPage() {
 
               <div className="absolute inset-0 bg-gradient-to-tr from-black/58 via-black/15 to-transparent transition-opacity duration-700 group-hover:opacity-90" />
 
-              <div className="absolute bottom-10 left-0 right-0 z-10 px-8 text-center text-white transition-transform duration-700 ease-out group-hover:-translate-y-1">
+              <div className="absolute bottom-12 left-0 right-0 z-10 px-6 text-center text-white lg:bottom-10 lg:px-8 transition-transform duration-700 ease-out group-hover:-translate-y-1">
                 <h3 className="text-[28px] font-normal tracking-[-0.035em]">
                   Voorwaarden
                 </h3>
@@ -808,7 +810,7 @@ export default function HypothekenPage() {
               whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-70px" }}
               transition={{ duration: 0.9, delay: 0.23, ease }}
-              className="group absolute bottom-[0%] left-[5%] h-[325px] w-[325px] overflow-hidden shadow-[0_25px_70px_rgba(16,36,94,0.08)]"
+              className="group relative aspect-square w-full max-w-[325px] shrink-0 lg:absolute lg:bottom-[0%] lg:left-[5%] lg:h-[325px] lg:w-[325px] lg:max-w-none overflow-hidden shadow-[0_25px_70px_rgba(16,36,94,0.08)]"
               style={{
                 borderRadius: "50%",
               }}
@@ -821,7 +823,7 @@ export default function HypothekenPage() {
 
               <div className="absolute inset-0 bg-gradient-to-tr from-black/68 via-black/20 to-transparent transition-opacity duration-700 group-hover:opacity-90" />
 
-              <div className="absolute bottom-10 left-0 right-0 z-10 px-8 text-center text-white transition-transform duration-700 ease-out group-hover:-translate-y-1">
+              <div className="absolute bottom-12 left-0 right-0 z-10 px-6 text-center text-white lg:bottom-10 lg:px-8 transition-transform duration-700 ease-out group-hover:-translate-y-1">
                 <h3 className="text-[29px] font-normal tracking-[-0.035em]">
                   Verhuizen
                 </h3>
@@ -838,7 +840,7 @@ export default function HypothekenPage() {
               whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-70px" }}
               transition={{ duration: 0.9, delay: 0.31, ease }}
-              className="group absolute bottom-[2%] right-[3%] h-[325px] w-[325px] overflow-hidden shadow-[0_25px_70px_rgba(16,36,94,0.08)]"
+              className="group relative aspect-square w-full max-w-[325px] shrink-0 lg:absolute lg:bottom-[2%] lg:right-[3%] lg:h-[325px] lg:w-[325px] lg:max-w-none overflow-hidden shadow-[0_25px_70px_rgba(16,36,94,0.08)]"
               style={{
                 borderRadius: "50%",
               }}
@@ -851,7 +853,7 @@ export default function HypothekenPage() {
 
               <div className="absolute inset-0 bg-gradient-to-tr from-black/68 via-black/18 to-transparent transition-opacity duration-700 group-hover:opacity-90" />
 
-              <div className="absolute bottom-10 left-0 right-0 z-10 px-8 text-center text-white transition-transform duration-700 ease-out group-hover:-translate-y-1">
+              <div className="absolute bottom-12 left-0 right-0 z-10 px-6 text-center text-white lg:bottom-10 lg:px-8 transition-transform duration-700 ease-out group-hover:-translate-y-1">
                 <h3 className="text-[29px] font-normal tracking-[-0.035em]">
                   Woningwaarde
                 </h3>
@@ -933,7 +935,7 @@ export default function HypothekenPage() {
       <section className="bg-[#b85c38] px-8 py-24 text-white lg:py-32">
         <Link
           href="/contact"
-          className="group mx-auto flex max-w-[1500px] items-end justify-between gap-10"
+          className="group mx-auto flex max-w-[1500px] flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10"
         >
           <motion.div
             initial={{ opacity: 0, x: -45 }}
@@ -954,7 +956,7 @@ export default function HypothekenPage() {
 
           <motion.span
             whileHover={{ x: 12 }}
-            className="mb-3 text-[clamp(3rem,6vw,7rem)] font-light"
+            className="self-end pr-2 text-[3.5rem] font-light leading-none transition-transform group-hover:translate-x-2 lg:mb-3 lg:self-auto lg:pr-0 lg:text-[clamp(3rem,6vw,7rem)]"
           >
             →
           </motion.span>

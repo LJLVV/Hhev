@@ -46,8 +46,8 @@ export default function ContactPage() {
 
   const formX = useTransform(
     contactProgress,
-    [0, 0.5, 1],
-    [100, 0, 45]
+    [0, 0.35, 1],
+    [100, 0, 0]
   );
 
   useEffect(() => {
@@ -153,18 +153,18 @@ export default function ContactPage() {
               className="group relative flex min-h-[300px] flex-col justify-between overflow-hidden border-b border-[#10245e]/15 p-8 lg:min-h-[360px] lg:border-b-0 lg:p-12"
             >
               {/* blauwe hoverlaag */}
-              <div className="absolute inset-0 origin-left scale-x-0 bg-[#10245e] transition-transform duration-700 ease-out group-hover:scale-x-100" />
+              <div className="absolute inset-0 origin-left scale-x-100 bg-[#10245e] lg:scale-x-0 transition-transform duration-700 ease-out group-hover:scale-x-100" />
 
               {/* klein koper accent */}
               <div className="absolute bottom-0 left-0 h-[5px] w-0 bg-[#b85c38] transition-all duration-700 group-hover:w-full" />
 
               <div className="relative z-10 flex items-start justify-between">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-[#10245e]/35 transition-colors duration-500 group-hover:text-white/45">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-white/55 transition-colors duration-500 lg:text-[#10245e]/35 lg:group-hover:text-white/45">
                   Liever direct?
                 </span>
 
                 <motion.span
-                  className="text-[32px] text-[#b85c38] transition-colors duration-500 group-hover:text-white"
+                  className="text-[32px] text-white transition-colors duration-500 lg:text-[#b85c38] lg:group-hover:text-white"
                   whileHover={{
                     x: 8,
                     y: -8,
@@ -178,7 +178,7 @@ export default function ContactPage() {
                 <motion.div
                   className="overflow-hidden"
                 >
-                  <span className="block text-[clamp(3.7rem,6vw,7rem)] leading-none tracking-[-0.065em] transition-colors duration-500 group-hover:text-white">
+                  <span className="block text-[clamp(3.7rem,6vw,7rem)] leading-none tracking-[-0.065em] text-white transition-colors duration-500 lg:text-[#10245e] lg:group-hover:text-white">
                     Bellen
                   </span>
                 </motion.div>
@@ -210,18 +210,18 @@ export default function ContactPage() {
               className="group relative flex min-h-[300px] flex-col justify-between overflow-hidden p-8 lg:min-h-[360px] lg:p-12"
             >
               {/* koper hoverlaag */}
-              <div className="absolute inset-0 origin-right scale-x-0 bg-[#b85c38] transition-transform duration-700 ease-out group-hover:scale-x-100" />
+              <div className="absolute inset-0 origin-right scale-x-100 bg-[#b85c38] lg:scale-x-0 transition-transform duration-700 ease-out group-hover:scale-x-100" />
 
               {/* blauwe accentlijn */}
               <div className="absolute bottom-0 right-0 h-[5px] w-0 bg-[#10245e] transition-all duration-700 group-hover:w-full" />
 
               <div className="relative z-10 flex items-start justify-between">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-[#10245e]/35 transition-colors duration-500 group-hover:text-white/55">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-white/55 transition-colors duration-500 lg:text-[#10245e]/35 lg:group-hover:text-white/55">
                   Een vraag achterlaten?
                 </span>
 
                 <motion.span
-                  className="text-[32px] text-[#b85c38] transition-colors duration-500 group-hover:text-white"
+                  className="text-[32px] text-white transition-colors duration-500 lg:text-[#b85c38] lg:group-hover:text-white"
                   whileHover={{ y: 8 }}
                 >
                   ↓
@@ -229,7 +229,7 @@ export default function ContactPage() {
               </div>
 
               <div className="relative z-10">
-                <span className="block text-[clamp(3.7rem,6vw,7rem)] leading-[0.9] tracking-[-0.065em] transition-colors duration-500 group-hover:text-white">
+                <span className="block text-[clamp(3.7rem,6vw,7rem)] leading-[0.9] tracking-[-0.065em] text-white transition-colors duration-500 lg:text-[#10245e] lg:group-hover:text-white">
                   Bericht
                   <br />
                   sturen
@@ -276,9 +276,8 @@ export default function ContactPage() {
 
             {/* DETAILS */}
             <motion.div
-              style={{ x: detailsX }}
-              initial={{ opacity: 0, x: -120 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, ease }}
             >
@@ -286,7 +285,7 @@ export default function ContactPage() {
                 Heckmann
               </p>
 
-              <h2 className="max-w-[650px] text-[clamp(3.8rem,6vw,7rem)] leading-[0.86] tracking-[-0.065em]">
+              <h2 className="max-w-[650px] text-[clamp(2.8rem,9vw,7rem)] leading-[0.86] tracking-[-0.065em]">
                 Persoonlijk
                 <br />
                 contact.

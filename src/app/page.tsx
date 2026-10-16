@@ -34,13 +34,13 @@ export default function Home() {
           {/* Buitenste koperlijn */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -bottom-[250px] -left-[370px] h-[730px] w-[730px] rounded-full border border-[#b85c38]/70 lg:-bottom-[285px] lg:-left-[315px] lg:h-[810px] lg:w-[810px]"
+            className="pointer-events-none absolute -bottom-[250px] -left-[370px] hidden h-[730px] w-[730px] rounded-full border border-[#b85c38]/70 lg:block lg:-bottom-[285px] lg:-left-[315px] lg:h-[810px] lg:w-[810px]"
           />
 
           {/* Binnenste subtiele lijn */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -bottom-[310px] -left-[315px] h-[620px] w-[620px] rounded-full border border-[#b85c38]/20 lg:-bottom-[340px] lg:-left-[255px] lg:h-[690px] lg:w-[690px]"
+            className="pointer-events-none absolute -bottom-[310px] -left-[315px] hidden h-[620px] w-[620px] rounded-full border border-[#b85c38]/20 lg:block lg:-bottom-[340px] lg:-left-[255px] lg:h-[690px] lg:w-[690px]"
           />
 
           {/* Koperpunt */}
@@ -58,7 +58,7 @@ export default function Home() {
             </div>
 
             <div className="lg:pt-1">
-              <h2 className="max-w-[980px] text-[clamp(2.7rem,4.8vw,5.15rem)] font-medium leading-[1.01] tracking-[-0.06em] text-[#101528]">
+              <h2 className="max-w-[980px] min-w-0 text-[clamp(2rem,8vw,2.7rem)] font-medium leading-[1.08] tracking-[-0.055em] [overflow-wrap:anywhere] text-[#101528] lg:text-[clamp(2.7rem,4.8vw,5.15rem)] lg:leading-[1.01] lg:tracking-[-0.06em] lg:[overflow-wrap:normal]">
                 <span className="block text-[#10245e]">
                   Geen standaardoplossing,
                 </span>
@@ -68,7 +68,7 @@ export default function Home() {
                 </span>
               </h2>
 
-              <p className="mt-10 max-w-[720px] text-[17px] leading-8 text-[#66708b] lg:text-[18px] lg:leading-9">
+              <p className="mt-7 max-w-[720px] min-w-0 text-[16px] leading-7 text-[#66708b] lg:mt-10 lg:text-[18px] lg:leading-9">
                 Een hypotheek, verzekering of financiering moet aansluiten op uw
                 situatie — niet andersom. Daarom begint goed advies met luisteren,
                 vergelijken en kijken naar wat werkelijk nodig is.

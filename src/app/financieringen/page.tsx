@@ -226,6 +226,27 @@ export default function FinancieringenPage() {
           </motion.p>
 
 
+          {/* MOBIEL — losse zwevende woorden */}
+          <div className="relative mt-14 h-[180px] w-full lg:hidden">
+            {[
+              { word: "privé", pos: "left-[5%] top-[8%]", color: "text-[#10245e]/45", delay: 0 },
+              { word: "ondernemen", pos: "right-[1%] top-[30%]", color: "text-[#10245e]/50", delay: 0.6 },
+              { word: "mobiliteit", pos: "left-[9%] bottom-[26%]", color: "text-[#b85c38]/75", delay: 1.2 },
+              { word: "zekerheid", pos: "right-[5%] bottom-[3%]", color: "text-[#10245e]/45", delay: 1.8 },
+            ].map(({ word, pos, color, delay }) => (
+              <motion.span
+                key={word}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay, ease }}
+                className={`absolute ${pos} ${color} text-[11px] uppercase tracking-[0.2em]`}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </div>
+
           {/* zwevende woorden */}
           <motion.span
             animate={{ y: [0, -9, 0] }}
@@ -421,8 +442,23 @@ export default function FinancieringenPage() {
 
 
                   <div>
-                    <h3 className="max-w-[570px] text-[clamp(2.5rem,4vw,4.8rem)] leading-[0.92] tracking-[-0.06em]">
-                      {option.title}
+                    <h3 className={`max-w-[570px] leading-[0.92] tracking-[-0.06em] ${
+                      option.title === "Kredietbescherming"
+                        ? "text-[clamp(2.5rem,4vw,4.8rem)]"
+                        : "text-[clamp(2.5rem,4vw,4.8rem)]"
+                    }`}>
+                      {option.title === "Kredietbescherming" ? (
+                        <>
+                          <span className="lg:hidden">
+                            Krediet-<br />bescherming
+                          </span>
+                          <span className="hidden lg:inline">
+                            {option.title}
+                          </span>
+                        </>
+                      ) : (
+                        option.title
+                      )}
                     </h3>
 
                     <div className="mt-7 flex items-center gap-4">
@@ -715,6 +751,117 @@ export default function FinancieringenPage() {
         </div>
 
 
+
+        {/* MOBIEL NETWERK — VERTICAAL GEANIMEERD */}
+        <div className="relative mx-auto mt-16 w-full max-w-[420px] lg:hidden">
+
+          <div className="relative grid grid-cols-[1fr_54px_1fr] items-center gap-x-2">
+
+            {/* DRIE INVOEREN */}
+            <div className="flex flex-col gap-8">
+              {["mogelijkheid", "aanbieder", "voorwaarden"].map((label, index) => (
+                <motion.div
+                  key={label}
+                  initial={{ opacity: 0, x: -25 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{
+                    duration: 0.65,
+                    delay: index * 0.2,
+                    ease,
+                  }}
+                  className="flex h-[58px] items-center border-b border-white/15"
+                >
+                  <span className="text-[10px] uppercase tracking-[0.13em] text-white/55">
+                    {label}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* LIJNEN NAAR HET MIDDELPUNT */}
+            <div className="relative h-[250px]">
+              <svg
+                viewBox="0 0 54 250"
+                preserveAspectRatio="none"
+                className="absolute inset-0 h-full w-full overflow-visible"
+                fill="none"
+              >
+                {[
+                  "M0 35 C22 35 22 125 54 125",
+                  "M0 125 L54 125",
+                  "M0 215 C22 215 22 125 54 125",
+                ].map((path, index) => (
+                  <motion.path
+                    key={index}
+                    d={path}
+                    stroke={index === 1 ? "#d58a68" : "rgba(255,255,255,.35)"}
+                    strokeWidth={index === 1 ? 1.7 : 1}
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 1 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{
+                      duration: 1.15,
+                      delay: 0.35 + index * 0.2,
+                      ease,
+                    }}
+                  />
+                ))}
+              </svg>
+            </div>
+
+            {/* UW SITUATIE */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.65 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.8, delay: 0.9, ease }}
+              className="relative z-10 flex aspect-square w-full max-w-[145px] items-center justify-center justify-self-center rounded-full border border-[#d58a68]/65 bg-[#10245e] text-center"
+            >
+              <span className="text-[10px] uppercase leading-5 tracking-[0.2em] text-white/85">
+                uw
+                <br />
+                situatie
+              </span>
+            </motion.div>
+
+          </div>
+
+          {/* UITGAANDE VERBINDING */}
+          <div className="ml-auto flex w-[42%] flex-col items-center">
+
+            <svg
+              viewBox="0 0 2 90"
+              className="h-[90px] w-[2px]"
+              fill="none"
+            >
+              <motion.path
+                d="M1 0 L1 90"
+                stroke="#d58a68"
+                strokeWidth="1.5"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.85, delay: 1.15, ease }}
+              />
+            </svg>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 1.5, ease }}
+              className="mt-3 border border-white/25 px-7 py-4 text-center"
+            >
+              <span className="text-[11px] uppercase tracking-[0.24em] text-white/75">
+                offerte
+              </span>
+            </motion.div>
+
+          </div>
+
+        </div>
+
         {/* desktop netwerk */}
         <div className="relative mx-auto mt-24 hidden h-[330px] max-w-[1300px] lg:block">
 
@@ -816,7 +963,7 @@ export default function FinancieringenPage() {
                 initial={{ opacity: 0, x: -130 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, ease }} className="text-[clamp(4rem,7vw,8rem)] leading-[0.87] tracking-[-0.065em]">
+                transition={{ duration: 1, ease }} className="text-[clamp(4rem,7vw,8rem)] leading-[0.97] lg:leading-[0.87] tracking-[-0.065em]">
               Financieren
               <br />
               begint met

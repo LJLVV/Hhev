@@ -134,17 +134,24 @@ export default function OverHeckmannPage() {
       </section>
 
       <section className="bg-[#f8f6f1] px-7 py-28 lg:px-12 lg:py-44">
-        <div className="mx-auto grid max-w-[1280px] gap-16 lg:grid-cols-[0.85fr_1fr] lg:gap-28">
+        <div className="mx-auto grid min-w-0 max-w-[1280px] grid-cols-1 gap-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:gap-28">
           <motion.h2
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease }}
-            className="text-[clamp(3rem,5vw,6rem)] leading-[0.95] tracking-[-0.06em]"
+            className="min-w-0 max-w-full text-[clamp(2.6rem,8vw,3.5rem)] leading-[1.08] tracking-[-0.06em] lg:text-[clamp(3rem,5vw,6rem)] lg:leading-[0.95]"
           >
             Passend advies.
             <br />
-            <span className="text-[#b85c38]">Geen standaardoplossing.</span>
+            <span className="text-[#b85c38]">
+              <span className="lg:hidden">
+                Geen standaard-<br />oplossing.
+              </span>
+              <span className="hidden lg:inline">
+                Geen standaardoplossing.
+              </span>
+            </span>
           </motion.h2>
 
           <motion.div
@@ -152,7 +159,7 @@ export default function OverHeckmannPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease }}
-            className="space-y-7 text-[17px] leading-[1.9] text-[#10245e]/65"
+            className="min-w-0 max-w-full space-y-7 break-normal text-[17px] leading-[1.9] text-[#10245e]/65"
           >
             <p>
               Ik zal niet altijd de goedkoopste verzekering kunnen aanbieden.
@@ -184,7 +191,7 @@ export default function OverHeckmannPage() {
           <p className="mb-8 text-[11px] uppercase tracking-[0.3em] text-[#b85c38]">
             Persoonlijk kennismaken
           </p>
-          <h2 className="max-w-[1050px] text-[clamp(3.8rem,7vw,8rem)] leading-[0.92] tracking-[-0.065em]">
+          <h2 className="min-w-0 max-w-full text-[clamp(2.75rem,9.3vw,3.85rem)] leading-[1.05] tracking-[-0.06em] lg:max-w-[1050px] lg:text-[clamp(3.8rem,7vw,8rem)] lg:leading-[0.92] lg:tracking-[-0.065em]">
             Laten we eens
             <br />
             <span className="text-[#b85c38]">kennismaken.</span>
