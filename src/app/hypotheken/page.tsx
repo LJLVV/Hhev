@@ -212,9 +212,96 @@ export default function HypothekenPage() {
         {/* =========================================================
             KENNISMAKEN + VERANTWOORD — ÉÉN VERHAAL
         ========================================================= */}
-        <section className="relative overflow-hidden bg-white px-6 py-16 lg:px-8 lg:py-32">
+        <section className="relative overflow-hidden bg-white px-6 pt-16 pb-0 lg:px-8 lg:py-32">
           <div className="relative mx-auto max-w-[1500px]">
 
+
+            {/* MOBIEL — EDITORIAL VERHAAL */}
+            <div className="lg:hidden">
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease }}
+                className="relative pb-20"
+              >
+                <div className="mb-10 flex items-start justify-between">
+                  <span className="pt-3 text-[10px] uppercase tracking-[0.28em] text-[#b85c38]">
+                    Kennismaken
+                  </span>
+                  
+                </div>
+
+                <h2 className="max-w-[480px] text-[clamp(2.7rem,10vw,4.2rem)] leading-[1.04] tracking-[-0.065em] text-[#10245e]">
+                  Eerst weten
+                  <br />
+                  waar u aan
+                  <br />
+                  toe bent.
+                </h2>
+
+                <p className="mt-9 max-w-[390px] text-[16px] leading-[1.85] text-[#10245e]/60">
+                  Het eerste hypotheekgesprek is gratis.
+                  Rustig kennismaken, zonder verplichtingen.
+                </p>
+
+                <Link
+                  href="/contact"
+                  className="mt-10 flex items-center justify-between border-b border-[#10245e]/20 pb-5 text-[14px] font-medium text-[#10245e]"
+                >
+                  Plan een eerste gesprek
+                  <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[#b85c38]">
+                    <path d="M5 19 19 5M7 5h12v12" />
+                  </svg>
+                </Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.9, ease }}
+                className="-mx-6 overflow-hidden bg-[#f3eee7] px-6 pb-12 pt-14"
+              >
+                <div className="mb-12 flex items-start justify-between">
+                  <span className="pt-3 text-[10px] uppercase tracking-[0.28em] text-[#b85c38]">
+                    Persoonlijk advies
+                  </span>
+                  
+                </div>
+
+                <h2 className="max-w-[520px] text-[clamp(2.65rem,9.4vw,4rem)] leading-[1.08] tracking-[-0.065em] text-[#10245e]">
+                  Niet wat
+                  <br />
+                  maximaal kan.
+                  <span className="mt-5 block text-[#b85c38]">
+                    Wat verantwoord voelt.
+                  </span>
+                </h2>
+
+                <div className="mt-12 h-px w-16 bg-[#b85c38]" />
+
+                <p className="mt-8 text-[11px] uppercase tracking-[0.22em] text-[#10245e]/45">
+                  We kijken naar wat voor u belangrijk is
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2.5">
+                  {["Maandlasten", "Toekomstplannen", "Financiële ruimte"].map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-[#10245e]/15 px-4 py-3 text-[13px] text-[#10245e]"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
+            </div>
+
+            {/* DESKTOP — BESTAANDE COMPOSITIE */}
+            <div className="hidden lg:block">
             {/* BOVENSTE VERHAAL */}
             <div className="grid gap-6 lg:grid-cols-[1.12fr_.88fr] lg:gap-12">
 
@@ -530,6 +617,8 @@ export default function HypothekenPage() {
 
             </div>
 
+
+            </div>
           </div>
         </section>
 
@@ -537,7 +626,7 @@ export default function HypothekenPage() {
       {/* =========================================================
           SITUATIES — INTERACTIEVE REGELS
       ========================================================= */}
-      <section className="bg-[#f5f2ec] px-8 py-32 lg:py-44">
+      <section className="bg-[#f5f2ec] px-0 pb-0 lg:px-8 lg:py-44 relative pt-24 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-20 before:bg-gradient-to-b before:from-[#f3eee7] before:to-[#f5f2ec] lg:before:hidden">
         <div className="mx-auto max-w-[1500px]">
 
           <motion.div
@@ -545,7 +634,7 @@ export default function HypothekenPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75, ease }}
-            className="mb-20 flex items-end justify-between"
+            className="mb-12 flex items-end justify-between px-6 lg:mb-20 lg:px-0"
           >
             <div>
               <p className="mb-6 text-[10px] uppercase tracking-[0.3em] text-[#10245e]/40">
@@ -562,7 +651,7 @@ export default function HypothekenPage() {
             </span>
           </motion.div>
 
-            <div className="border-t border-[#10245e]/15">
+            <div className="border-t border-[#10245e]/15 lg:border-t">
               {situations.map((item, index) => {
                 const active = activeSituation === index;
 
@@ -577,12 +666,17 @@ export default function HypothekenPage() {
                       delay: index * 0.07,
                       ease,
                     }}
-                    className="relative overflow-hidden border-b border-[#10245e]/15"
+                    className={[
+                      "relative overflow-hidden border-b border-white/15 lg:border-[#10245e]/15",
+                      index % 2 === 0
+                        ? "bg-[#10245e] lg:bg-transparent"
+                        : "bg-[#b85c38] lg:bg-transparent",
+                    ].join(" ")}
                   >
                     {/* Blauw / koper vlak */}
                     <div
                       className={[
-                        "pointer-events-none absolute inset-0 origin-left transition-transform duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)]",
+                        "pointer-events-none absolute inset-0 origin-left transition-transform duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)]", "hidden lg:block",
                         active ? "scale-x-100" : "scale-x-0",
                       ].join(" ")}
                       style={{
@@ -591,15 +685,29 @@ export default function HypothekenPage() {
                       }}
                     />
 
+                    {/* Mobiele achtergrond: horizontaal blauw boven, koper onder bij openen */}
+                    <div
+                      aria-hidden="true"
+                      className={[
+                        "pointer-events-none absolute inset-0 lg:hidden",
+                        active
+                          ? "bg-[#10245e]"
+                          : index % 2 === 0
+                            ? "bg-[#10245e]"
+                            : "bg-[#b85c38]",
+                      ].join(" ")}
+                    />
+
                     {/* Klikbare hoofdregel */}
                     <button
                       type="button"
                       onClick={() =>
                         setActiveSituation(active ? null : index)
                       }
-                      className="group relative z-10 grid w-full cursor-pointer gap-6 px-0 py-10 text-left transition-[padding] duration-500 ease-out hover:px-8 md:grid-cols-[.9fr_1.1fr_40px] md:items-center"
+                      className="group relative z-10 grid w-full cursor-pointer gap-6 px-6 py-12 text-left transition-[padding] duration-500 ease-out lg:px-0 lg:py-10 lg:hover:px-8 md:grid-cols-[.9fr_1.1fr_40px] md:items-center"
                     >
                       <h3
+                        style={{ color: "white" }}
                         className={[
                           "text-[clamp(1.8rem,2.5vw,2.8rem)] tracking-[-0.045em] transition-colors duration-300",
                           active
@@ -611,6 +719,7 @@ export default function HypothekenPage() {
                       </h3>
 
                       <p
+                        style={{ color: "rgba(255,255,255,0.85)" }}
                         className={[
                           "max-w-[560px] text-[15px] leading-7 transition-colors duration-300",
                           active
@@ -622,6 +731,7 @@ export default function HypothekenPage() {
                       </p>
 
                       <span
+                        style={{ color: "white" }}
                         className={[
                           "justify-self-end text-[25px] transition-all duration-500",
                           active
@@ -650,9 +760,9 @@ export default function HypothekenPage() {
                           delay: active ? 0.15 : 0,
                         },
                       }}
-                      className="relative z-10 overflow-hidden"
+                      className="relative z-10 overflow-hidden bg-[#b85c38] lg:bg-transparent"
                     >
-                      <div className="grid md:grid-cols-[.9fr_1.1fr_40px]">
+                      <div className="grid px-6 lg:px-0 md:grid-cols-[.9fr_1.1fr_40px]">
                         <div />
 
                         <motion.div
@@ -665,7 +775,7 @@ export default function HypothekenPage() {
                             delay: active ? 0.12 : 0,
                             ease,
                           }}
-                          className="max-w-[650px] border-t border-white/25 pb-12 pt-7"
+                          className="max-w-[650px] border-t border-white/25 pb-12 pt-7 lg:border-white/25"
                         >
                           <p className="text-[17px] leading-8 text-white/90">
                             {item.detail}

@@ -18,6 +18,7 @@ export default function VerzekeringenPage() {
   const mobileScrollerRef = useRef<HTMLDivElement>(null);
   const mobileProgress = useMotionValue(0);
   const [activeMobileSlide, setActiveMobileSlide] = useState(0);
+  const [hasSwiped, setHasSwiped] = useState(false);
 
   const handleMobileScroll = () => {
     const element = mobileScrollerRef.current;
@@ -32,6 +33,10 @@ export default function VerzekeringenPage() {
     );
 
     mobileProgress.set(progress);
+
+    if (element.scrollLeft > 20) {
+      setHasSwiped(true);
+    }
 
     const slide = Math.max(0, Math.min(3, Math.round(progress * 3)));
 
@@ -140,6 +145,31 @@ export default function VerzekeringenPage() {
         className="relative h-[100svh] lg:h-[400vh]"
       >
         <div className="relative h-[100svh] overflow-hidden lg:sticky lg:top-0 lg:h-screen">
+
+
+          {!hasSwiped && activeMobileSlide === 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="pointer-events-none absolute bottom-10 left-6 z-30 flex items-center gap-3 text-white lg:hidden"
+            >
+              <span className="text-[10px] uppercase tracking-[0.2em]">
+                Swipe om te ontdekken
+              </span>
+              <motion.span
+                animate={{ x: [0, 7, 0] }}
+                transition={{
+                  duration: 1.6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="text-[20px] text-[#d58a68]"
+              >
+                →
+              </motion.span>
+            </motion.div>
+          )}
 
           <div
             ref={mobileScrollerRef}
