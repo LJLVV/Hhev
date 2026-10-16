@@ -52,3 +52,20 @@ next-env.d.ts
 *.backup-*
 *.before-*
 *~
+
+
+# Local backups
+*.bak
+*.bak-*
+*.backup
+*.backup-*
+*.before-*
+*.before-*.txt
+*.before-*.tsx
+*.mobile-backup
+*~
+
+# Secrets
+.env
+.env.*
+!.env.example

@@ -209,7 +209,20 @@ export default function OverHeckmannPage() {
             >
               Neem contact op
               <span className="text-[26px] text-[#b85c38] transition-transform duration-300 group-hover:translate-x-2">
-                ↗
+                <svg
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="1.5"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  aria-hidden="true"
+  className="inline-block shrink-0"
+>
+  <path d="M5 19 19 5M7 5h12v12" />
+</svg>
               </span>
             </Link>
           </div>

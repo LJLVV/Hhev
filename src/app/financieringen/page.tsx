@@ -435,7 +435,19 @@ export default function FinancieringenPage() {
                       }}
                       transition={{ duration: 0.35 }}
                     >
-                      ↗
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 19 19 5M7 5h12v12" />
+                      </svg>
                     </motion.span>
 
                   </div>
@@ -720,7 +732,7 @@ export default function FinancieringenPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, ease }}
-            className="max-w-[1000px] text-[clamp(4rem,7vw,8rem)] leading-[0.86] tracking-[-0.065em]"
+            className="max-w-[1000px] text-[clamp(4rem,7vw,8rem)] leading-[1.04] lg:leading-[0.86] tracking-[-0.065em]"
           >
             Niet gebonden
             <br />

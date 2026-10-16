@@ -47,6 +47,26 @@ export default function Navigation({
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkBackground, setDarkBackground] = useState(false);
 
+  const [insuranceSlide, setInsuranceSlide] = useState(0);
+
+  useEffect(() => {
+    if (pathname !== "/verzekeringen") return;
+
+    const updateSlide = (event: Event) => {
+      const slide = (event as CustomEvent<number>).detail;
+      if (typeof slide === "number") {
+        setInsuranceSlide(slide);
+      }
+    };
+
+    window.addEventListener("heckmann:insurance-slide", updateSlide);
+    return () => {
+      window.removeEventListener("heckmann:insurance-slide", updateSlide);
+    };
+  }, [pathname]);
+
+
+
   useEffect(() => {
     let frame = 0;
 
@@ -224,7 +244,14 @@ export default function Navigation({
               href="/"
               aria-label="Naar homepage"
               className="flex items-center gap-3 transition-colors duration-500"
-              style={{ color: foreground }}
+              style={{
+                color:
+                  pathname === "/verzekeringen"
+                    ? insuranceSlide === 0 || insuranceSlide === 3
+                      ? "#ffffff"
+                      : "#10245e"
+                    : foreground,
+              }}
             >
               <div className="flex h-8 w-8 items-center justify-center border border-current/25">
                 <span className="text-[13px] font-semibold">
@@ -245,13 +272,22 @@ export default function Navigation({
               aria-controls="heckmann-mobile-menu"
               className="group flex h-[46px] items-center gap-5 px-5 backdrop-blur-[8px]"
               style={{
-                color: foreground,
+                color:
+                  pathname === "/verzekeringen"
+                    ? insuranceSlide === 0 || insuranceSlide === 3
+                      ? "#ffffff"
+                      : "#10245e"
+                    : foreground,
                 border: `1px solid ${
-                  darkBackground
+                  (pathname === "/verzekeringen"
+                    ? insuranceSlide === 0 || insuranceSlide === 3
+                    : darkBackground)
                     ? "rgba(255,255,255,.38)"
                     : "rgba(16,36,94,.24)"
                 }`,
-                background: darkBackground
+                background: (pathname === "/verzekeringen"
+                  ? insuranceSlide === 0 || insuranceSlide === 3
+                  : darkBackground)
                   ? "rgba(16,36,94,.14)"
                   : "rgba(248,245,239,.35)",
               }}

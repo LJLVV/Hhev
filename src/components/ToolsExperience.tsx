@@ -144,7 +144,20 @@ export default function ToolsExperience() {
                 {topic.subtitle}
               </span>
               <span className="mt-3 text-[19px] text-[#b85c38] transition-transform duration-300 group-hover:translate-x-1">
-                ↗
+                <svg
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="1.7"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  aria-hidden="true"
+  className="inline-block shrink-0 align-[-2px]"
+>
+  <path d="M5 19 19 5M7 5h12v12" />
+</svg>
               </span>
             </motion.button>
             </div>
@@ -179,7 +192,20 @@ export default function ToolsExperience() {
                 )}
               </span>
               <span className="mt-3 text-[11px] text-[#10245e]/55">
-                Ontdek meer ↗
+                Ontdek meer <svg
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="1.7"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  aria-hidden="true"
+  className="inline-block shrink-0 align-[-2px]"
+>
+  <path d="M5 19 19 5M7 5h12v12" />
+</svg>
               </span>
             </motion.button>
           ))}
@@ -249,7 +275,20 @@ export default function ToolsExperience() {
                         {item.label}
                       </span>
                       <p className="text-[16px] leading-6">{item.text}</p>
-                      <span className="self-end text-[25px]">↗</span>
+                      <span className="self-end text-[25px]"><svg
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="1.7"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  aria-hidden="true"
+  className="inline-block shrink-0 align-[-2px]"
+>
+  <path d="M5 19 19 5M7 5h12v12" />
+</svg></span>
                     </a>
                   ))}
                 </div>
@@ -269,7 +308,20 @@ export default function ToolsExperience() {
                     Maak via a.s.r. een indicatie van uw wensen en de bijbehorende kosten.
                   </span>
                   <span className="mt-4 self-end text-[25px] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                    ↗
+                    <svg
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="1.7"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  aria-hidden="true"
+  className="inline-block shrink-0 align-[-2px]"
+>
+  <path d="M5 19 19 5M7 5h12v12" />
+</svg>
                   </span>
                 </a>
               )}
@@ -290,7 +342,20 @@ export default function ToolsExperience() {
                     maatregelen bij uw woning passen.
                   </span>
                   <span className="mt-4 self-end text-[25px] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                    ↗
+                    <svg
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="1.7"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  aria-hidden="true"
+  className="inline-block shrink-0 align-[-2px]"
+>
+  <path d="M5 19 19 5M7 5h12v12" />
+</svg>
                   </span>
                 </a>
               )}

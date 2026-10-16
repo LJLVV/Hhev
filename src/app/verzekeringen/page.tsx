@@ -33,8 +33,14 @@ export default function VerzekeringenPage() {
 
     mobileProgress.set(progress);
 
-    setActiveMobileSlide(
-      Math.max(0, Math.min(3, Math.round(progress * 3)))
+    const slide = Math.max(0, Math.min(3, Math.round(progress * 3)));
+
+    setActiveMobileSlide(slide);
+
+    window.dispatchEvent(
+      new CustomEvent("heckmann:insurance-slide", {
+        detail: slide,
+      })
     );
   };
 
@@ -328,12 +334,12 @@ export default function VerzekeringenPage() {
 
                   <motion.div
                     style={{ width: slideTwoLine }}
-                    className="absolute left-0 top-0 h-px bg-[#b85c38]"
+                    className="absolute left-0 top-0 h-px bg-[#b85c38] max-lg:!w-full"
                   />
 
                   <motion.div
                     style={{ left: slideTwoDot }}
-                    className="absolute top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-[5px] border-[#f5f2ec] bg-[#b85c38] shadow-[0_0_0_1px_rgba(184,92,56,.35)]"
+                    className="absolute top-1/2 hidden h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-[5px] border-[#f5f2ec] bg-[#b85c38] shadow-[0_0_0_1px_rgba(184,92,56,.35)] lg:block"
                   />
 
                   <div className="mt-6 flex justify-between text-[11px] uppercase tracking-[0.22em] text-[#10245e]/45">

@@ -17,6 +17,65 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function ContactPage() {
   const [typedText, setTypedText] = useState("");
+
+  const [sending, setSending] = useState(false);
+  const [formStatus, setFormStatus] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+
+  async function handleContactSubmit(
+    event: React.FormEvent<HTMLFormElement>
+  ) {
+    event.preventDefault();
+    if (sending) return;
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    setSending(true);
+    setFormStatus(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          message: data.get("message"),
+          website: data.get("website"),
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          result.error || "Verzenden is niet gelukt."
+        );
+      }
+
+      setFormStatus({
+        type: "success",
+        message: "Bedankt! Uw contactverzoek is verzonden.",
+      });
+
+      form.reset();
+    } catch (error) {
+      setFormStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Verzenden is niet gelukt.",
+      });
+    } finally {
+      setSending(false);
+    }
+  }
+
   const heroRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
 
@@ -170,7 +229,19 @@ export default function ContactPage() {
                     y: -8,
                   }}
                 >
-                  ↗
+                  <svg
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="1.5"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  aria-hidden="true"
+>
+  <path d="M5 19 19 5M7 5h12v12" />
+</svg>
                 </motion.span>
               </div>
 
@@ -396,7 +467,7 @@ export default function ContactPage() {
 
               <form
                 id="contactverzoek"
-                onSubmit={(event) => event.preventDefault()}
+                onSubmit={handleContactSubmit}
                 className="space-y-9"
               >
                 <label className="group block">
@@ -404,8 +475,7 @@ export default function ContactPage() {
                     Naam
                   </span>
 
-                  <input
-                    type="text"
+                  <input name="name" type="text" required
                     className="w-full border-0 border-b border-white/20 bg-transparent px-0 py-4 text-[20px] text-white outline-none transition-colors duration-500 placeholder:text-white/20 focus:border-[#d58a68]"
                     placeholder="Uw naam"
                   />
@@ -416,8 +486,7 @@ export default function ContactPage() {
                     E-mail
                   </span>
 
-                  <input
-                    type="email"
+                  <input name="email" type="email" required
                     className="w-full border-0 border-b border-white/20 bg-transparent px-0 py-4 text-[20px] text-white outline-none transition-colors duration-500 placeholder:text-white/20 focus:border-[#d58a68]"
                     placeholder="uw@email.nl"
                   />
@@ -428,8 +497,7 @@ export default function ContactPage() {
                     Telefoon
                   </span>
 
-                  <input
-                    type="tel"
+                  <input name="phone" type="tel"
                     className="w-full border-0 border-b border-white/20 bg-transparent px-0 py-4 text-[20px] text-white outline-none transition-colors duration-500 placeholder:text-white/20 focus:border-[#d58a68]"
                     placeholder="06 ..."
                   />
@@ -440,7 +508,7 @@ export default function ContactPage() {
                     Waar kunnen we mee helpen?
                   </span>
 
-                  <textarea
+                  <textarea name="message" required minLength={10} maxLength={5000}
                     rows={4}
                     className="w-full resize-none border-0 border-b border-white/20 bg-transparent px-0 py-4 text-[20px] text-white outline-none transition-colors duration-500 placeholder:text-white/20 focus:border-[#d58a68]"
                     placeholder="Vertel kort waar uw vraag over gaat..."
@@ -448,22 +516,44 @@ export default function ContactPage() {
                 </label>
 
                 <motion.button
-                  type="submit"
+                  type="submit" disabled={sending}
                   whileHover={{ x: 8 }}
                   whileTap={{ scale: 0.98 }}
                   className="group mt-5 flex items-center gap-8 border-b border-[#d58a68] pb-3 text-[15px]"
                 >
-                  Verstuur contactverzoek
+                  {sending ? "Bezig met verzenden..." : "Verstuur contactverzoek"}
 
                   <span className="text-[24px] text-[#d58a68] transition-transform duration-300 group-hover:translate-x-2">
                     →
                   </span>
                 </motion.button>
+                <div className="absolute -left-[9999px]" aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
+                {formStatus && (
+                  <p
+                    role="status"
+                    aria-live="polite"
+                    className={
+                      formStatus.type === "success"
+                        ? "text-[14px] text-white"
+                        : "text-[14px] text-[#ffb8a4]"
+                    }
+                  >
+                    {formStatus.message}
+                  </p>
+                )}
               </form>
 
-              <p className="mt-8 max-w-[470px] text-[12px] leading-6 text-white/30">
-                Het formulier is in deze ontwerpversie nog niet gekoppeld aan
-                e-mailverzending.
+              <p className="mt-8 max-w-[470px] text-[12px] leading-6 text-white/40">
+                Verstuur via dit formulier geen vertrouwelijke financiële
+                documenten of gegevens.
               </p>
             </motion.div>
 
