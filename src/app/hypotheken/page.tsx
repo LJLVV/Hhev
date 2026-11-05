@@ -667,16 +667,16 @@ export default function HypothekenPage() {
                       ease,
                     }}
                     className={[
-                      "relative overflow-hidden border-b border-white/15 lg:border-[#10245e]/15",
+                      "relative overflow-hidden border-b border-white/15",
                       index % 2 === 0
-                        ? "bg-[#10245e] lg:bg-transparent"
-                        : "bg-[#b85c38] lg:bg-transparent",
+                        ? "bg-[#10245e]"
+                        : "bg-[#b85c38]",
                     ].join(" ")}
                   >
                     {/* Blauw / koper vlak */}
                     <div
                       className={[
-                        "pointer-events-none absolute inset-0 origin-left transition-transform duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)]", "hidden lg:block",
+                        "pointer-events-none absolute inset-0 origin-left transition-transform duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)]", "hidden",
                         active ? "scale-x-100" : "scale-x-0",
                       ].join(" ")}
                       style={{
@@ -704,7 +704,7 @@ export default function HypothekenPage() {
                       onClick={() =>
                         setActiveSituation(active ? null : index)
                       }
-                      className="group relative z-10 grid w-full cursor-pointer gap-6 px-6 py-12 text-left transition-[padding] duration-500 ease-out lg:px-0 lg:py-10 lg:hover:px-8 md:grid-cols-[.9fr_1.1fr_40px] md:items-center"
+                      className="group relative z-10 grid w-full cursor-pointer gap-6 px-6 py-12 text-left transition-[padding] duration-500 ease-out lg:px-12 lg:py-10 lg:hover:px-14 md:grid-cols-[.9fr_1.1fr_40px] md:items-center"
                     >
                       <h3
                         style={{ color: "white" }}
@@ -760,9 +760,9 @@ export default function HypothekenPage() {
                           delay: active ? 0.15 : 0,
                         },
                       }}
-                      className="relative z-10 overflow-hidden bg-[#b85c38] lg:bg-transparent"
+                      className={`relative z-10 overflow-hidden bg-[#b85c38] ${index === 1 ? "lg:bg-[#10245e]" : ""}`}
                     >
-                      <div className="grid px-6 lg:px-0 md:grid-cols-[.9fr_1.1fr_40px]">
+                      <div className="grid px-6 lg:px-12 md:grid-cols-[.9fr_1.1fr_40px]">
                         <div />
 
                         <motion.div

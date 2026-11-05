@@ -11,41 +11,39 @@ const topics = [
     title: "Zorgverzekering",
     subtitle: "Vergelijken wat bij u past.",
     color: "#E4EAF4",
-    position: "left-[12%] top-[9%]",
+    position: "left-[17%] top-[12%]",
   },
   {
     id: "uitvaart",
     title: "Uitvaart",
     subtitle: "Uw wensen voor later.",
     color: "#F5E5D8",
-    position: "right-[12%] top-[9%]",
+    position: "right-[17%] top-[12%]",
   },
   {
     id: "duurzaam",
     title: "Verduurzamen",
     subtitle: "Een woning die vooruit kan.",
     color: "#E8EBE3",
-    position: "left-1/2 -translate-x-1/2 bottom-[4%]",
+    position: "left-1/2 -translate-x-1/2 top-[76%]",
   },
   {
     id: "documenten",
     title: "Documenten",
     subtitle: "Praktische informatie bij de hand.",
     color: "#F0E8DE",
-    position: "right-[12%] bottom-[12%]",
+    position: "right-[17%] top-[56%]",
   },
   {
     id: "kaarten",
     title: "Vergelijkingskaarten",
     subtitle: "Inzicht in uw mogelijkheden.",
     color: "#DCE4EF",
-    position: "left-1/2 -translate-x-1/2 -bottom-[85px] translate-y-[180px]",
+    position: "left-[17%] top-[56%]",
   },
 ] as const;
 
-const visibleTopics = topics.filter(
-  (topic) => topic.id !== "documenten" && topic.id !== "kaarten"
-);
+const visibleTopics = topics;
 
 type TopicId = (typeof topics)[number]["id"];
 
@@ -84,16 +82,16 @@ export default function ToolsExperience() {
           </p>
         </motion.div>
 
-        <div className="relative hidden h-[690px] lg:block">
-          <div className="pointer-events-none absolute left-1/2 top-[44%] h-[470px] w-[470px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#10245e]/10" />
-          <div className="pointer-events-none absolute left-1/2 top-[44%] h-[370px] w-[370px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[#b85c38]/30" />
+        <div className="relative hidden h-[760px] lg:block">
+          <div className="pointer-events-none absolute left-1/2 top-[310px] h-[470px] w-[470px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#10245e]/10" />
+          <div className="pointer-events-none absolute left-1/2 top-[310px] h-[370px] w-[370px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[#b85c38]/30" />
 
           <motion.div
             initial={{ opacity: 0, scale: 0.75 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.1, ease }}
-            className="absolute left-1/2 top-[44%] flex h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-[#10245e] text-center text-white shadow-[0_30px_90px_rgba(16,36,94,0.18)]"
+            className="absolute left-1/2 top-[310px] flex h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-[#10245e] text-center text-white shadow-[0_30px_90px_rgba(16,36,94,0.18)]"
           >
             <span className="text-[11px] uppercase tracking-[0.3em] text-[#d58a68]">
               Heckmann
@@ -111,11 +109,7 @@ export default function ToolsExperience() {
           {visibleTopics.map((topic, index) => (
             <div
               key={topic.id}
-              className={
-                topic.id === "duurzaam"
-                  ? "absolute left-1/2 top-[580px] -translate-x-1/2"
-                  : `absolute ${topic.position}`
-              }
+              className={`absolute ${topic.position}`}
             >
             <motion.button
               key={topic.id}
@@ -127,7 +121,7 @@ export default function ToolsExperience() {
               transition={{ duration: 0.85, delay: index * 0.12, ease }}
               whileHover={{ scale: 1.08, y: -8 }}
               style={{ backgroundColor: topic.color }}
-              className={`group relative flex h-[185px] w-[185px] flex-col items-center justify-center rounded-full p-5 text-center shadow-[0_20px_50px_rgba(16,36,94,0.08)] transition-shadow duration-500 hover:shadow-[0_30px_70px_rgba(16,36,94,0.16)] ${topic.position}`}
+              className={`group relative flex h-[185px] w-[185px] flex-col items-center justify-center rounded-full p-5 text-center shadow-[0_20px_50px_rgba(16,36,94,0.08)] transition-shadow duration-500 hover:shadow-[0_30px_70px_rgba(16,36,94,0.16)]`}
             >
               <span className={`font-medium leading-tight tracking-[-0.04em] ${(topic.id as string) === "kaarten" ? "text-[17px]" : "text-[19px]"}`}>
                 {(topic.id as string) === "kaarten" ? (
@@ -244,6 +238,52 @@ export default function ToolsExperience() {
               </p>
 
               {/* De inhoud per onderwerp volgt hieronder */}
+
+              {active === "kaarten" && (
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Hypotheek",
+                href: "/documenten/vergelijkingskaart-hypotheek-2026.pdf",
+              },
+              {
+                title: "Risico’s afdekken",
+                href: "/documenten/vergelijkingskaart-risicos-afdekken-2026.pdf",
+              },
+              {
+                title: "Vermogen opbouwen",
+                href: "/documenten/vergelijkingskaart-vermogen-opbouwen-2026.pdf",
+              },
+            ].map((kaart, index) => (
+              <motion.a
+                key={kaart.href}
+                href={kaart.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease }}
+                className="group flex min-h-[220px] flex-col justify-between rounded-[28px] bg-[#dce4ef] p-7 transition-shadow duration-300 hover:shadow-[0_20px_50px_rgba(16,36,94,0.12)]"
+                aria-label={`${kaart.title} — open PDF`}
+              >
+                <span className="text-[11px] uppercase tracking-[0.18em] text-[#b85c38]">
+                  Vergelijkingskaart · PDF
+                </span>
+                <h3 className="mt-5 text-[clamp(1.5rem,2vw,2rem)] leading-tight tracking-[-0.04em]">
+                  {kaart.title}
+                </h3>
+                <span className="mt-7 flex items-center justify-between border-t border-[#10245e]/15 pt-5 text-[13px] font-medium">
+                  Bekijk PDF
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                    <path d="M5 19 19 5M7 5h12v12" />
+                  </svg>
+                </span>
+              </motion.a>
+            ))}
+          </div>
+              )}
+
 
               {active === "zorg" && (
                 <div className="grid gap-4 md:grid-cols-3">
@@ -381,24 +421,7 @@ export default function ToolsExperience() {
                 </div>
               )}
 
-              {active === "kaarten" && (
-                <div className="grid gap-4 md:grid-cols-3">
-                  {["Hypotheek", "Risico’s afdekken", "Vermogen opbouwen"].map(
-                    (item) => (
-                      <div key={item} className="rounded-[26px] bg-[#dce4ef] p-7">
-                        <h4 className="min-h-[80px] text-[26px] leading-tight tracking-[-0.04em]">
-                          {item}
-                        </h4>
-                        <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-[#b85c38]">
-                          Wordt gecontroleerd
-                        </p>
-                      </div>
-                    )
-                  )}
-                </div>
-              )}
-
-              {(active === "documenten" || active === "kaarten") && (
+              {active === "documenten" && (
                 <p className="mt-7 max-w-[650px] text-[13px] leading-6 text-[#10245e]/50">
                   De bestaande bestanden worden gecontroleerd en waar nodig
                   bijgewerkt voordat ze beschikbaar worden gesteld.
