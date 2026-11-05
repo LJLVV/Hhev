@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
-const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: NextRequest) {
   const origin = request.headers.get("origin");
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
         "",
         "Bericht:",
         message,
-      ].join("\\n"),
+      ].join("\n"),
     });
 
     if (error) {
