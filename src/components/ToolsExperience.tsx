@@ -403,30 +403,42 @@ export default function ToolsExperience() {
               {active === "documenten" && (
                 <div className="grid gap-3 sm:grid-cols-2">
                   {[
-                    "Herbouwwaardemeter",
-                    "Werkgeversverklaring NHG",
-                    "Schadeaangifte algemeen",
-                    "Inboedelwaardemeter",
-                    "Digitaal aanrijdingsformulier",
-                    "Verbouwingsspecificatie",
-                    "Toelichting verbouwingsspecificatie",
-                  ].map((item) => (
-                    <div key={item} className="rounded-[22px] bg-[#f0e8de] p-6">
-                      <p className="text-[16px]">{item}</p>
-                      <p className="mt-3 text-[11px] uppercase tracking-[0.13em] text-[#b85c38]">
-                        Wordt bijgewerkt
-                      </p>
-                    </div>
+                    { title: "Nibud-begrotingsformulier", href: "/documenten/nibud-begrotingsformulier.pdf" },
+                    { title: "Schadeaangifte algemeen", href: "/documenten/schadeaangifte-algemeen.pdf" },
+                    { title: "Digitaal aanrijdingsformulier", href: "/documenten/aanrijdingsformulier.pdf" },
+                    { title: "Verbouwingsspecificatie 2025", href: "/documenten/verbouwingsspecificatie-2025.pdf" },
+                    { title: "Toelichting verbouwingsspecificatie", href: "/documenten/toelichting-verbouwingsspecificatie.pdf" },
+                  ].map((document) => (
+                    <a
+                      key={document.href}
+                      href={document.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group rounded-[22px] bg-[#f0e8de] p-6 transition-colors duration-300 hover:bg-[#e8dace]"
+                    >
+                      <p className="text-[16px]">{document.title}</p>
+                      <div className="mt-3 flex items-center justify-between gap-3">
+                        <span className="text-[11px] uppercase tracking-[0.13em] text-[#b85c38]">
+                          Bekijk PDF
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          className="text-[20px] text-[#b85c38] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                        >
+                          ↗
+                        </span>
+                      </div>
+                    </a>
                   ))}
                 </div>
               )}
 
               {active === "documenten" && (
                 <p className="mt-7 max-w-[650px] text-[13px] leading-6 text-[#10245e]/50">
-                  De bestaande bestanden worden gecontroleerd en waar nodig
-                  bijgewerkt voordat ze beschikbaar worden gesteld.
+                  Bekijk of download de beschikbare formulieren en documenten.
                 </p>
               )}
+
             </motion.div>
           )}
         </AnimatePresence>
